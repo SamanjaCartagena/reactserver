@@ -12,7 +12,10 @@ def users():
                         'arpan',
                         'john',
                         'doe',
-                        'Samanja'
+                        'Samanja',
+                        'Tom and Samanja are friends',
+                        'Samanja loves coding',
+                        'Tom loves Samanja'
                   ]
             }
 
