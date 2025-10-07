@@ -4,22 +4,24 @@ from flask_cors import CORS
 app=Flask(__name__)
 cors=CORS(app, origins='*')
 
+user_list=[
+      'arpan',
+      'john',
+      'doe',
+      'Samanja',
+      'Tom and Samanja are friends',
+      'Samanja loves coding',
+      'Tom loves Samanja'
+]
+
 @app.route('/api/users', methods=['GET'])
 def users():
-      return jsonify(
-            {
-                  "users":[
-                        'arpan',
-                        'john',
-                        'doe',
-                        'Samanja',
-                        'Tom and Samanja are friends',
-                        'Samanja loves coding',
-                        'Tom loves Samanja'
-                  ]
-            }
+    """
+    Handles GET requests to the /api/users endpoint.
+    """
+    return jsonify({"users": user_list})
 
-      )
+      
 @app.route('/api/users', methods=['POST'])
 def handle_post_request():
     """
@@ -29,6 +31,7 @@ def handle_post_request():
         data = request.get_json()
         # Process the received JSON data
         print(f"Received JSON data: {data}")
+        user_list.append(data.get("name"))
         return jsonify({"message": "Data received successfully!", "data": data}), 200
     else:
         # Handle non-JSON data, e.g., form data
